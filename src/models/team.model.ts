@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Match} from './match.model';
 
 @model({settings: {strict: false}})
 export class Team extends Entity {
@@ -17,7 +18,7 @@ export class Team extends Entity {
 
   @property({
     type: 'string',
-    default: active,
+    default: "active",
   })
   status?: string;
 
@@ -32,6 +33,16 @@ export class Team extends Entity {
   })
   contact: string;
 
+  @hasMany(() => Match, {keyTo: 'team1_id'})
+  matches: Match[];
+
+  @property({
+    type: 'number',
+  })
+  captainId?: number;
+
+  @hasMany(() => Match, {keyTo: 'team2Id'})
+  team2Matches: Match[];
   // Define well-known properties here
 
   // Indexer property to allow additional data

@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasOne} from '@loopback/repository';
+import {Player} from './player.model';
 
 @model()
 export class User extends Entity {
@@ -32,6 +33,8 @@ export class User extends Entity {
   })
   birth_date?: string;
 
+  @hasOne(() => Player)
+  player: Player;
 
   constructor(data?: Partial<User>) {
     super(data);

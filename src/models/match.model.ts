@@ -32,6 +32,15 @@ export class Match extends Entity {
   })
   end_at?: string;
 
+  @property({
+    type: 'number',
+  })
+  team1_id?: number;
+
+  @property({
+    type: 'number',
+  })
+  team2Id?: number;
 
   constructor(data?: Partial<Match>) {
     super(data);
